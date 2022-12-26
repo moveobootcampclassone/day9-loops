@@ -68,7 +68,7 @@
 let i = 0;
 // while (i >= 0 && i < 10) {
 while (i < 10) {
-  console.log(i);
+  // console.log(i);
   //code block
   i += 2;
 }
@@ -90,7 +90,7 @@ for (let i = 0; i < 10; i++) {
   // text = "0" + 1 = "0" + "1" = "01"
   text += i; // + in string its concatenating (שירשור)
 }
-console.log(text);
+// console.log(text);
 // expected output: "012456789"
 
 // let i = 0;
@@ -142,40 +142,70 @@ console.log(text);
 //Looping over arrays
 // -------------------
 
-const array = [1, 2, 3, 4, 5, 6];
+const numArrays = [1, 2, 3, 4, 5, 6];
+//array.length = 6
+// 0,1,2,3,4,5
 
-// for (let index = 0; index < array.length; index++) {
-//   const element = array[index];
-//   console.log(element);
+// for (let index = 0; index <= numArrays.length - 1; index++) {
+// or :for (let index = 0; index < numArrays.length; index++) {
+//   const element = numArrays[index];
+//   // element = array[0] => 1
+//   // element = array[1] => 2
+//   // element = array[2] => 3
+//   // element = array[3] => 4
+//   // element = array[4] => 5
+//   // element = array[5] => 6
+//   console.log(element, `this is my ${index} element`);
 // }
 
-// for (let index = 0; index < array.length; index++) {
-//   const element = array[index];
-//   index *= index;
-//   console.log(element);
-// }
+// const numArrays = [1, 2, 3, 4, 5, 6];
+
+// save in a new array the power of each number
+let powNums = [];
+for (let index = 0; index < numArrays.length; index++) {
+  let element = numArrays[index];
+  let newElement = element * element;
+  powNums.push(newElement);
+  // newElement = 1 * 1 = 1 (i=0)
+  // powNums = [1]
+  // newElement = 2 * 2 = 4 (i=1)
+  // powNums = [1,4]
+  // newElement = 3 * 3 = 9 (i=2)
+  // powNums = [1,4,9]
+  //...
+}
+// console.log(powNums);
 
 function onInit() {
   let makeDiv = "";
   for (let index = 0; index < 5; index++) {
     makeDiv += `<p>my index is ${index}</p></br>`;
   }
-  console.log(makeDiv);
+  // console.log(makeDiv);
   //<p>my index is 0</p></br>
   //<p>my index is 1</p></br>
   //<p>my index is 2</p></br>
   // <p>my index is 3</p></br>
   // <p>my index is 4</p></br> *
-  document.getElementById("my-id").outerHTML = makeDiv;
+  // document.getElementById("my-id").outerHTML = makeDiv;
 }
-// const movies = ["Django", "Seven", "Batman"];
-// let makeList = `<ul>`;
-// for (let index = 0; index < movies.length; index++) {
-//   const element = movies[index];
-//   makeList += `<li>${element}</li>`;
-// }
-// makeList += `</ul>`;
-// console.log(makeList);
+
+const movies = ["Django", "Seven", "Batman"];
+let makeList = `<ul>`;
+for (let index = 0; index < movies.length; index++) {
+  const element = movies[index];
+  // element = "Django" (index = 0)
+  // element = "Seven" (index = 1)
+  makeList += `<li>${element}</li>`;
+  //makeList = <ul><li>Django</li> (index = 0)
+  //makeList = <ul><li>Django</li><li>Seven</li> (index = 1)
+  // ...
+}
+makeList += `</ul>`;
+console.log(makeList);
+//output: "<ul><li>Django</li><li>Seven</li><li>Batman</li></ul>"
+document.getElementById("my-id").outerHTML = makeList;
+// document.getElementById("my-id").outerHTML = "<p>Hello</p><p>Hello2</p>";
 
 //--------------------------------------//
 // const evenArray = [];
@@ -195,36 +225,78 @@ function onInit() {
 // for (let i = 1; i <= 3; i++) {
 //   for (let j = 1; j <= 3; j++) {
 //     console.log(i + "," + j);
+//     // 1,1 (i=1,j=1)
+//     // 1,2 (i=1,j=2)
+//     // 1,3 (i=1,j=3)
+//     // 2,1 (i=2,j=1)
+//     // 2,2 (i=2,j=2)
+//     // 2,3 (i=2,j=3)
+//     //...
+//     //...
+//     // 3,3 (i=3,j=3)
 //   }
-// }
-// for (let i = 0; i <= 3; i++) {
-//   let row = "*";
-//   for (let j = 0; j <= 3; j++) {
-//     row += "#";
-//   }
-//   console.log(row);
 // }
 
-// for (let i = 1; i <= 8; i++) {
+//TODO: make better example
+let password = "";
+for (let i = 0; i <= 3; i++) {
+  let symbols = "*";
+  for (let j = 0; j <= 3; j++) {
+    symbols += "#"; // symbols = symbols + "#" //שרשור
+    // a += 3 // a = a + 3 //כתיב מקוצר
+    // symbols = "*" + "#" (j=0)
+    // symbols = "*#" +"#"  (j=1)
+    // symbols = "*##" + "#" (j=2)
+    // symbols = "*###" + "#" (j=3)
+  }
+  //symbols = "*####"
+  password += symbols; // password = password + symbols
+  //password = "" + "*####" (i=0)
+  //password = "*####" + "*####" (i=1)
+  //password = "*####*####" (i=2)
+  // console.log(symbols, "symbols");
+}
+// console.log(password);
+//"*####*####*####*####"
+
+// for (let i = 1; i <= 4; i++) {
 //   let row = "";
-//   for (let j = 1; j <= 8; j++) {
+//   for (let j = 1; j <= 4; j++) {
 //     if (i % 2 === 0 && j % 2 === 0) {
 //       row += "*";
+//       //(i=2,j=2)
+//       //(i=2,j=4)
 //     } else {
-//       row += " ";
+//       row += "#";
+//       // (i=1,j=1)
+//       // (i=1,j=2)
+//       // (i=1,j=3)
+//       // (i=1,j=4)
+//       // (i=2,j=1)
+//       // (i=2,j=3)
 //     }
 //   }
 //   console.log(row);
 // }
 
-// for (let i = 1; i <= 8; i++) {
-//     let row = "";
-//     for (let j = 1; j <= 8; j++) {
-//       if ((i + j) % 2 === 0) {
-//         row += "*";
-//       } else {
-//         row += " ";
-//       }
-//     }
-//     console.log(row);
-//   }
+let row = "";
+for (let i = 1; i <= 4; i++) {
+  for (let j = 1; j <= 4; j++) {
+    if ((i + j) % 2 === 0) {
+      row += "*";
+      //(i=1,j=1)
+      //(i=1,j=3)
+    } else {
+      row += "#";
+      //(i=1,j=2)
+      //(i=1,j=4)
+    }
+  }
+  // console.log(row);
+}
+
+for (let index = 0; index < numArrays.length; index++) {
+  const element = numArrays[index];
+  //
+  //
+}
